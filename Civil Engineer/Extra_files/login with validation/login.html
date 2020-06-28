@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>login</title>
+    <link rel="stylesheet" href="login.css">
+  </head>
+  <body>
+    <div class="logbox">
+      <h1>Login</h1>
+      <form class="textbox" action="home.html" method="post" name="form" onsubmit="return validated()">
+        <input type="text" name="email" placeholder="Username">
+        <div id="email_error">please fill up your Email </div>
+        <input type="password" name="password" placeholder="password">
+        <div id="pass_error">please fill up your password</div>
+        <input class="button" type="submit" name="" placeholder=""="submit"><br>
+
+      </form>
+    </div>
+    <script src="login_validation.js">
+
+    </script>
+  </body>
+</html>

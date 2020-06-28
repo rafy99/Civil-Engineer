@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>login</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+  </head>
+  <body>
+    <div class="logbox">
+      <h1>Login</h1>
+      <form class="textbox" action="{% url 'accounts:login' %}" method="POST" name="form" onsubmit="return validated()">
+        {% csrf_token %}
+        {% if messages %}
+          <ul class="messages">
+              {% for message in messages %}
+              <li  style="color:red" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+              {% endfor %}
+          </ul>
+        {% endif %}
+
+        <input type="text" name="email" placeholder="Email">
+        <div id="email_error">please fill up your Email </div>
+        <input type="password" name="password" placeholder="password">
+        <div id="pass_error">please fill up your password</div>
+        <input class="button" type="submit" name="" placeholder=""="submit"><br>
+
+      </form>
+    </div>
+    <script src="{% static 'js/sending_data.js' %}"></script>
+    <script src="{% static 'js/login_validation.js' %} "></script>
+  </body>
+</html>

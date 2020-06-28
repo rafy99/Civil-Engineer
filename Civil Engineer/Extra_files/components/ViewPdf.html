@@ -1,0 +1,81 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+
+
+<style media="screen">
+  #example1{
+    width:80%;
+    height:700px;
+  }
+</style>
+
+
+</head>
+
+
+<body>
+
+  <div id='example1'></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js"></script>
+  <script>PDFObject.embed("Sample.pdf", "#example1");</script>
+
+</body>
+</html> -->
+
+
+{% load static %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <style media="screen">
+    .modal-dialog{
+        width:85%;
+    }.embed_par{
+      height:750px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Trigger the modal with a button -->
+  <button type="button" href="Sample.pdf" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">View Pdf</button>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+          <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h1>Open in Browser <a target="_blank" href="/media/Sample.pdf"> Click Here</a></h1>
+        </div>
+        <div class="modal-body">
+          <div class="embed_par">
+            <embed id='embed' src="{% static 'Sample.pdf' %}" frameborder="0" width="100%" height="100%">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>
+
+</body>
+</html>

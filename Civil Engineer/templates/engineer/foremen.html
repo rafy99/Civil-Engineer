@@ -1,0 +1,287 @@
+{% extends 'engineer/base.html' %}
+{% load static %}
+
+
+
+{% block title %} Workers {% endblock %}
+
+{% block style %}
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+<!-- Google Fonts Roboto -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<!-- Data Table -->
+<link href="{% static 'css/datatables.min.css' %}" rel="stylesheet">
+
+<style>
+  input[type=checkbox]{
+    margin: 10px;
+    cursor: pointer;
+-moz-transform: scale(1.4); /* FF */
+  }body{
+    color:white;
+  }
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+
+
+
+  <div class="wrapper-editor">
+
+    <div class="block my-4">
+      <div class="d-flex justify-content-center">
+        <p class="h5 text-primary createShowP">Workers</p>
+      </div>
+    </div>
+
+    <div class="row d-flex justify-content-center modalWrapper">
+      <div class="modal fade addNewInputs" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="modalAdd"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 font-weight-bold text-primary ml-5">Add new Worker</h4>
+              <button type="button" class="close text-primary" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form class="" action="{% url 'tower:add_foreman' %}" method="POST">
+            <div class="modal-body mx-3">
+
+                {% csrf_token %}
+                <div class="md-form mb-5">
+                  <input required name="first_name" autocomplete="false" type="text" id="addName" class="form-control validate">
+                  <label data-error="wrong" data-success="right" for="firstName">First Name</label>
+                </div>
+
+                <div class="md-form mb-5">
+                  <input required name="last_name" autocomplete="false" type="text" id="addName" class="form-control validate">
+                  <label data-error="wrong" data-success="right" for="lastName">Last Name</label>
+                </div>
+
+                <div class="md-form mb-5">
+                  <input required name="email" readonly onfocus="this.removeAttribute('readonly');" autocomplete="off" type="email" id="addEmail" class="form-control validate">
+                  <label data-error="wrong" data-success="right" for="inputOfficeInput">Email</label>
+                </div>
+
+                <div class="md-form mb-5">
+                  <input required name="password" type="password" id="addpassword" class="form-control validate">
+                  <label data-error="wrong" data-success="right" for="inputOfficeInput">Password</label>
+                </div>
+
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center buttonAddFormWrapper">
+              <button type='submit' class="btn btn-outline-primary btn-block buttonAdd">Add Worker
+                <i class="fas fa-paper-plane-o ml-1"></i>
+              </button>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <a href="" class="btn add btn-info btn-rounded btn-sm" data-toggle="modal" data-target="#modalAdd">Add<i
+            class="fas fa-plus-square ml-1"></i></a>
+      </div>
+
+      <!-- <div class="modal fade modalEditClass" id="modalEdit" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 font-weight-bold text-secondary ml-5">Edit Worker</h4>
+              <button type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body mx-3">
+
+
+              <form class="" action="index.html" method="post">
+
+                <div class="form-group mb-5">
+                  <label data-error="wrong" data-success="right" for="inputName">Name</label>
+                  <input type="text" id="editName" class="form-control validate">
+                </div>
+
+                <div class="form-group mb-5">
+                  <label data-error="wrong" data-success="right" for="inputPosition">Job</label>
+                  <input type="text" id="editJob" class="form-control validate">
+                </div>
+
+
+                <div class="form-group mb-5">
+                  <label data-error="wrong" data-success="right" for="inputOfficeInput">Email</label>
+                  <input type="text" id="editEmail" class="form-control validate">
+                </div>
+              </form>
+
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center editInsideWrapper">
+              <button class="btn btn-outline-secondary btn-block editInside" data-dismiss="modal">Edit
+                worker
+                <i class="fas fa-paper-plane-o ml-1"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+
+      <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modalDelete"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 font-weight-bold ml-5 text-danger">Delete</h4>
+              <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body mx-3">
+              <p style="color:black;" class="text-center h4">Are you sure to delete selected row?</p>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center deleteButtonsWrapper">
+              <button type="button" class="btn btn-danger btnYesClass" id="btnYes" data-dismiss="modal">Yes</button>
+              <button type="button" class="btn btn-primary btnNoClass" id="btnNo" data-dismiss="modal">No</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button type='button' id='delete_button' class="btn btn-danger btn-sm btn-rounded buttonDelete" data-toggle="modal" data-target="#modalDelete"
+          disabled>Delete<i class="fas fa-times ml-1"></i></a>
+      </div>
+    </div>
+
+
+<div class="container">
+
+<form action="{% url 'tower:delete_foreman' %}" method="POST" id='form'>
+{% csrf_token %}
+<table id="table"  style="color:white;background: #262B49"  class="table table-bordered table-sm table-dark " cellspacing="0" width="100%">
+  <thead>
+    <tr>
+
+      <th class="th-sm">Name</th>
+      <th class="th-sm">Email</th>
+      <th class="th-sm">Levels</th>
+      <th class="th-sm"><span id='counter'>0</span> row selected</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for foreman in foremen %}
+    <tr>
+        <td>{{foreman.full_name}}</td>
+        <td>{{foreman.email}}</td>
+        <td>{{foreman.levels}}</td>
+        <!-- <td>
+          <button type="button" class="btn edit btn-info btn-rounded btn-sm buttonEdit" data-toggle="modal" data-target="#modalEdit"
+            >Edit<i class="fas fa-pencil-square-o ml-1"></i></a>
+        </td> -->
+        <td>
+          <input type="checkbox" name="id[]" value="{{foreman.id}}">
+        </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  <tfoot>
+    <tr>
+      <th class="th-sm">Name</th>
+      <th class="th-sm">LeveL</th>
+      <th class="th-sm">Email</th>
+      <th class="th-sm"></th>
+    </tr>
+  </tfoot>
+</table>
+
+    </tr>
+  </tfoot>
+</table>
+
+</div>
+
+
+
+
+
+</form>
+
+
+
+{% endblock %}
+
+
+
+{% block script %}
+
+
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'js/datatables.min.js' %}"></script>
+
+
+<script >
+$(document).ready(function () {
+  let counter = 0;
+  $('#table').DataTable({
+    columnDefs: [{orderable: false,targets: 3}]
+  });
+  $('.dataTables_length').addClass('bs-select');
+
+  $('input[type="checkbox"]').click(function(){
+      if($(this).prop("checked") == true){
+          counter+=1;
+          $('#delete_button').attr('disabled',false);
+      }
+      else if($(this).prop("checked") == false){
+          counter-=1;
+          counter = Math.max(counter,0);
+          if(counter===0){
+            $('#delete_button').attr('disabled',true);
+          }
+
+      }
+      $('#counter').text(counter);
+
+  });
+
+  $('#btnYes').click(function(){
+    $('#form').submit();
+  });
+
+  // $('.edit').click(function(){
+  //   let siblings = $(this).parent().siblings()
+  //   let first_name = siblings[0].innerText.split(" ")[0];
+  //   let last_name =  siblings[0].innerText.split(" ")[1];
+  //   let email  = siblings[3].innerText;
+  //   console.log(name,job,email)
+  //   $('#editfirstName').val(name)
+  //   $('#editLastName').val(job)
+  //   $('#editEmail').val(email)
+  // });
+
+
+  });
+
+
+
+</script>
+{% endblock %}

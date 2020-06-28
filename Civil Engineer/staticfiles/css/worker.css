@@ -1,0 +1,286 @@
+/* start main rules */
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    height: 3000px;
+}
+/* end main rules */
+/* start navbar */
+.navbar {
+    background: #22242A;
+  }
+  .navbar .left_area{
+      float: left;
+  }
+  .navbar .left_area h3{
+    color: #fff;
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 900;
+  }
+  .navbar .left_area span{
+    color: #19B3D3;
+  }
+  .logout_btn{
+    padding: 5px;
+    background: #19B3D3;
+    text-decoration: none;
+    float: right;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 40px;
+    border-radius: 2px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    transition: 0.5s;
+    transition-property: background;
+  }
+  .logout_btn:hover{
+    background: #0B87A6;
+  }
+  .navbar::placeholder{
+      color:black;
+      font-size:15px;
+  }
+  /* end navbar */
+/* start style main content */
+.hold-all-content{
+    margin-left: 400px;
+    margin-top: 50px;
+}
+/* end style main content */
+/* start style main page */
+.head{
+    border: none;
+    border-bottom: 2px solid black;
+    width: 400px;
+    margin-left: 135px;
+}
+.head h3{
+    text-align: center;
+}
+.tasks-finished{
+    overflow: hidden;
+    margin-top: 25px;
+    background-color:#D3D3D3;
+    height: 60px;
+    width: 700px;
+}
+.tasks-finished i{
+    float: right;
+    margin-top: -25px;
+    margin-right: 9px;
+}
+.body-div .tasks-finished h5{
+    margin-top: 11px;
+    padding-left: 9px;
+}
+.head1{
+    margin-top: 50px;
+}
+.tasks-not-finished{
+    background: rgba(0,0,0,.5);
+    color: #fff;
+    overflow: hidden;
+    margin-top: 25px;
+    height: 60px;
+    width: 700px;
+}
+
+.completed-tasks,.not-completed-tasks{
+  margin-bottom: 50px;
+}
+
+.not-completed-tasks .body-div1 .tasks-not-finished h5{
+    margin-top: 11px;
+    padding-left: 9px;
+}
+.btn-general{
+    float: right;
+    margin-top: -33px;
+    margin-right: 9px;
+}
+.btn-general1{
+    float: right;
+    margin-top: -33px;
+    margin-right: 18px;
+}
+/* end style main page */
+/* start model */
+:root {
+    --modal-duration: 1s;
+    --modal-color: #428bca;
+  }
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-content {
+    margin: 10% auto;
+    width: 60%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    animation-name: modalopen;
+    animation-duration: var(--modal-duration);
+  }
+
+  .modal-header h2
+ {
+   margin-left: 600px;
+  }
+
+  .modal-header {
+    background: var(--modal-color);
+    padding: 15px;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+
+  .modal-body {
+    padding: 10px 20px;
+    background: #fff;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  }
+
+  .close0 {
+    color: #ccc;
+    float: right;
+    font-size: 30px;
+    color: #fff;
+  }
+
+  .close0:hover,
+  .close0:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  @keyframes modalopen {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* end second modal */
+  /* modal for progress*/
+  :root {
+    --modal-duration: 1s;
+    --modal-color: #428bca;
+  }
+  .modal1 {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-content1 {
+    margin: 10% auto;
+    width: 60%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    animation-name: modalopen;
+    animation-duration: var(--modal-duration);
+  }
+
+  .modal-header1 h2
+ {
+   margin-left: 600px;
+  }
+
+  .modal-header1 {
+    background: var(--modal-color);
+    padding: 15px;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+
+  .modal-body1 {
+    padding: 10px 20px;
+    background: #fff;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  }
+
+  .close1 {
+    color: #ccc;
+    float: right;
+    font-size: 30px;
+    color: #fff;
+  }
+
+  .close1:hover,
+  .close1:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  @keyframes modalopen {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+/* progress */
+.container{
+    width: 700px;
+}
+input{
+    width: 100%;
+    height: 17px;
+    background: #dadada;
+    border-radius: 30px;
+    outline: 0;
+    overflow: hidden;
+}
+input , span{
+    box-shadow: 8px 8px 8px var(--sombra),
+    -8px -8px 8px white ,
+    inset -1px -1px 0px 1px white ,
+    inset 1px 1px 0px 1px var(--sombra);
+}
+input::-webkit-slider-thumb{
+
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: var(--bg);
+    box-shadow: 3px 3px 3px var(--sombra),
+    -3px -3px 3px white,
+    inset -3px -3px 3px white,
+    inset 3px 3px 3px var(--sombra),
+    -105px 0px 20px 100px rgba(0, 255, 234, .4),
+    -610px 0px 0px 600px rgba(73, 2, 187);
+    cursor: pointer;
+}
+#value{
+    width: 60px;
+    height: 50px;
+    margin-left: 20px;
+    border-radius: 10px;
+    font-weight: 100;
+    font-family: arial;
+}

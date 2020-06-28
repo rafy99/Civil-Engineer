@@ -1,0 +1,59 @@
+{% extends 'foreman/base.html' %}
+{% load static %}
+
+{% block style %}
+
+    <link type="text/css" rel="stylesheet" href="{% static 'css/stylesheet.css' %}" />
+
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="info">
+  <section>
+
+    <div class="chart row m-3">
+
+        <div class="col-12">
+          <button  type="button" onclick="setValues()"class="btn btn-warning">Zoom In</button>
+          <canvas id="myChart" width="320" height="100"></canvas>
+          <h3></h3>
+          <h4></h4>
+        </div>
+
+    </div>
+
+    <div class="chart row m-3">
+        <div class="col-6">
+          <div class="">
+            <canvas id="myBarChart" width="150" height="100"></canvas>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="">
+            <canvas id="myChart2" width="200" height="100"></canvas>
+          </div>
+        </div>
+    </div>
+  </section>
+</div>
+
+
+<div class="mt-5 pt-5">
+
+</div>
+
+
+{% endblock %}
+
+{% block script %}
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script type="text/javascript">
+      const api_url = 'http://mina381.pythonanywhere.com/test/download_operations/{{user.id}}'
+    </script>
+    <script src="{% static 'js/all_charts.js' %}"></script>
+
+{% endblock %}

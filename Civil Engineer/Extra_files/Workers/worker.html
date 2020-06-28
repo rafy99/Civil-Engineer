@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Worker</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sweetalert2.min.css">
+  </head>
+  <body>
+    <!-- start navbar --> 
+    <div class="cont">
+        <div class="navbar">
+            <div class="left_area">
+              <h3>Coding <span>Snow</span></h3>
+            </div>
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <div class="right_area">
+              <a href="#" class="logout_btn">Logout</a>
+            </div>
+        </div>
+    </div>
+    <!-- End navbar -->
+    <!--start first card-->
+      <div class="card" style="width: 18rem;" id="cardcard">
+        <img class="card-img-top" src="about.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Tasks Finished</h5>
+          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum harum voluptate vitae magnam illum? Sint quasi maiores quidem assumenda laudantium.</p>
+          <a href="#" class="btn btn-primary button" id="modal-btn">View Finished Tasks</a>
+        </div>
+      </div>
+    <div class="card" style="width: 18rem;" id="cardcard">
+      <img class="card-img-top" src="about.jpg" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Tasks To Finish</h5>
+        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum harum voluptate vitae magnam illum? Sint quasi maiores quidem assumenda laudantium.</p>
+        <a href="#" class="btn btn-primary button1" id="modal-btn1">View Tasks To Finish</a>
+      </div>
+    </div>
+    <!--End first card-->
+        <!--Start model one-->
+        <div id="my-modal" class="modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2>Tasks Finished</h2>
+              <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+              <div class="data">
+                <h2>Task 1 name</h2>
+                <strong>Description :</strong>
+                <p>here is some description here is some description here is some description here is some description here is some description here is some description </p>
+                <strong>Notes :</strong>
+                <p>Here is some notes Here is some notes Here is some notes Here is some notes Here is some notes Here is some notes Here is some notes </p>
+              </div>
+              <div class="data">
+                <h2>Task 1 name</h2>
+                <strong>Description :</strong>
+                <p>here is some description here is some description here is some description here is some description here is some description here is some description </p>
+                <strong>Notes :</strong>
+                <p>Here is some notes Here is some notes Here is some notes Here is some notes Here is some notes Here is some notes Here is some notes </p>
+              </div>
+              <div class="data">
+                <h2>Task 1 name</h2>
+                <strong>Description :</strong>
+                <p>here is some description here is some description here is some description here is some description here is some description here is some description </p>
+                <strong>Notes :</strong>
+                <p>Here is some notes Here is some notes Here is some notes Here is some notes Here is some notes Here is some notes Here is some notes </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--End model one-->
+        <!--Start model two-->
+        <div id="my-modal1" class="modal1">
+          <div class="modal-content1">
+            <div class="modal-header1">
+              <h2>Tasks To Finish</h2>
+              <span class="close close1" >&times;</span>
+            </div>
+            <div class="modal-body1">
+              <div class="data1">
+                <h2>Task 1 name</h2>
+                <strong>Description :</strong>
+                <p>here is some description here is some description here is some description here is some description here is some description here is some description </p>
+                <strong>Notes :</strong>
+                <p>Here is some notes Here is some notes Here is some notes Here is some notes Here is some notes Here is some notes Here is some notes </p>
+                <div class="container">
+                  <input type="range" value="50" min="0" max="100" id="rango" onmousemove="actualizer()" class="forprog">
+                  <span id="value" class="spanforprog">50</span>
+                </div>
+              </div>
+              <div class="data1">
+                <h2>Task 1 name</h2>
+                <strong>Description :</strong>
+                <p>here is some description here is some description here is some description here is some description here is some description here is some description </p>
+                <strong>Notes :</strong>
+                <p>Here is some notes Here is some notes Here is some notes Here is some notes Here is some notes Here is some notes Here is some notes </p>
+                <div class="container">
+                  <input type="range" value="50" min="0" max="100" id="rango1" onmousemove="actualizer1()" class="forprog">
+                  <span id="value1" class="spanforprog">50</span>
+                </div>
+              </div>
+              <div class="data1">
+                <h2>Task 1 name</h2>
+                <strong>Description :</strong>
+                <p>here is some description here is some description here is some description here is some description here is some description here is some description </p>
+                <strong>Notes :</strong>
+                <p>Here is some notes Here is some notes Here is some notes Here is some notes Here is some notes Here is some notes Here is some notes </p>
+                <div class="container">
+                  <input type="range" value="50" min="0" max="100" id="rango2" onmousemove="actualizer2()" class="forprog">
+                  <span id="value2" class="spanforprog">50</span>
+                </div>
+              </div>
+            </div><!--end-->
+          </div>
+        </div>
+        <!--End model two-->
+    <!-- Bootstrap && JS -->
+    <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

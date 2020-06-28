@@ -1,0 +1,58 @@
+body
+{
+  background-image: linear-gradient(120deg , #3498db , #8e44ad);
+  background-size: cover;
+}
+.logbox
+{
+  width: 340px;
+  height: 400px;
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  border: 1px solid #ffe6cc;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+}
+.logbox h1
+{
+  font-size: 40px;
+  text-align: center;
+
+}
+.textbox
+{
+  border-radius:10px;
+
+}
+input
+{
+  width: 70%;
+  border-radius:10px;
+  margin: 10px;
+  margin-left: 45px;
+  font-size: 20px;
+  padding:5px;
+  border: 2px solid black;
+}
+.button
+{
+  width: 75%;
+  background-image: linear-gradient(120deg , #3498db , #8e44ad);
+
+}
+.button:hover
+{
+  background: #862d86;
+}
+.textbox #email_error , #pass_error
+{
+  width: 70%;
+  font-size: 18px;
+  color: #C62828;
+  margin-left: 45px;
+  background: rgba(255, 0, 0,0.1);
+  text-align: center;
+  padding: 5px 8px;
+  display: none;
+}

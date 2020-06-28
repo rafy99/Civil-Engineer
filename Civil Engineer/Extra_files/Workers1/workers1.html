@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+      <!-- start navbar --> 
+    <div class="cont">
+        <div class="navbar">
+            <div class="left_area">
+              <h3>Coding <span>Snow</span></h3>
+            </div>
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <div class="right_area">
+              <a href="#" class="logout_btn">Logout</a>
+            </div>
+        </div>
+    </div>
+    <!-- End navbar -->
+    <!-- start main page -->
+    <div class="hold-all-content">
+        <!--start finished tasks-->
+        <div class="completed-tasks">
+            <div class="head">
+                <h3>Completed</h3>
+            </div>
+            <div class="body-div">
+                <div class="tasks-finished">
+                    <h5>it was to finish the floor</h5>
+                    <i class="fa fa-check"></i>
+                </div>
+            </div>
+            <div class="body-div">
+                <div class="tasks-finished">
+                    <h5>it was to clean the bathroom</h5>
+                    <i class="fa fa-check"></i>
+                </div>
+            </div>
+            <div class="body-div">
+                <div class="tasks-finished">
+                    <h5>it was to add tablets</h5>
+                    <i class="fa fa-check"></i>
+                </div>
+            </div>
+            <div class="body-div">
+                <div class="tasks-finished">
+                    <h5>it was to decorrate the wall</h5>
+                    <i class="fa fa-check"></i>
+                </div>
+            </div>
+            <div class="body-div">
+                <div class="tasks-finished">
+                    <h5>it was to check the ceramic</h5>
+                    <i class="fa fa-check"></i>
+                </div>
+            </div>
+        </div> 
+        <!--end finished tasks-->   
+        <!--start not finished tasks-->
+        <div class="not-completed-tasks">
+            <div class="head head1">
+                <h3>NOT Completed</h3>
+                </div>
+            <div class="body-div1">
+                <div class="tasks-not-finished">
+                    <h5>it was to check the celling</h5>                   
+                    <button type="button" class="btn btn-primary btn-general" id="modal-btn1">Add Progress</button>
+                    <button type="button" class="btn btn-info btn-general1" id="modal-btn">More Info</button>
+                </div>
+                <div class="tasks-not-finished">
+                    <h5>it was to check the celling</h5>                   
+                    <button type="button" class="btn btn-primary btn-general" >Add Progress</button>
+                    <button type="button" class="btn btn-info btn-general1" >More Info</button>
+                </div>
+                <div class="tasks-not-finished">
+                    <h5>it was to check the celling</h5>                   
+                    <button type="button" class="btn btn-primary btn-general" >Add Progress</button>
+                    <button type="button" class="btn btn-info btn-general1" >More Info</button>
+                </div>
+                <div class="tasks-not-finished">
+                    <h5>it was to check the celling</h5>                   
+                    <button type="button" class="btn btn-primary btn-general" >Add Progress</button>
+                    <button type="button" class="btn btn-info btn-general1" >More Info</button>
+                </div>
+                <div class="tasks-not-finished">
+                    <h5>it was to check the celling</h5>                   
+                    <button type="button" class="btn btn-primary btn-general" >Add Progress</button>
+                    <button type="button" class="btn btn-info btn-general1" >More Info</button>
+                </div>
+            </div>
+        </div>       
+        <!--end not finished tasks-->
+    </div>
+    <!-- End main page -->
+         <!--start model trmplate for info-->
+         <div id="my-modal" class="modal">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2>Modal Header</h2>
+                <span class="close">&times;</span>
+              </div>
+              <div class="modal-body">
+                <strong>Operation type:</strong>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla repellendus nisi, sunt consectetur ipsa velit
+                  repudiandae aperiam modi quisquam nihil nam asperiores doloremque mollitia dolor deleniti quibusdam nemo
+                  commodi ab.</p>
+                  <strong>Description:</strong>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, vitae.</p>
+                  <strong>Deadline:</strong>
+                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos quo ut dolore suscipit pariatur assumenda.</p>
+              </div>
+            </div>
+          </div>
+        <!--End model template for info-->
+        <!--start model for progress bar-->
+        <div id="my-modal1" class="modal1">
+            <div class="modal-content1">
+              <div class="modal-header1">
+                <span class="close1">&times;</span>
+                <h2>Modal Header</h2>
+              </div>
+              <div class="modal-body1">
+                <div class="container">
+                    <input type="range" value="50" min="0" max="100" id="rango" onmousemove="actualizer()">
+                    <span id="value">50</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!--End model for progress bar-->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

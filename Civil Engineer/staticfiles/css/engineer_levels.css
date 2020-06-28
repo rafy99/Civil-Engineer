@@ -1,0 +1,181 @@
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'poppins' , sans-serif;
+    list-style: none;
+}
+.skills{
+  width: 250px;
+  color: white;
+   margin: 60px auto;
+}
+.skills li{
+   margin:20px 0;
+}
+.bar{
+  background: #353b48;
+  display:block;
+  height: 9px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 0 10px #2187e7b3;
+}
+.bar span{
+  height: 9px;
+  float: left;
+  background: #2187e7;
+}
+.html{
+  animation: html 2s;
+  width:50%;
+}
+.main_cont{
+    display: flex;
+    min-height: 100vh;
+    flex-wrap: wrap;
+    /* background: #ccc; */
+}
+.box{
+    position: relative;
+    width: 390px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #060c21;
+    margin: 40px;
+}
+.box .glass {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    display: block;
+    background: rgba(255,255,255,.1);
+    pointer-events: none;
+}
+.box .content {
+    padding: 20px;
+    color: #fff;
+}
+.box:before{
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    bottom: -2px;
+    background: #fff;
+    z-index: -1;
+}
+.box:after{
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    bottom: -2px;
+    background: #fff;
+    z-index: -2;
+    filter: blur(40px);
+}
+.box:nth-child(1)  ,
+.box:nth-child(1) {
+    background: linear-gradient(235deg,#89ff00,#010615,#00bcd4);
+    background-size: 200% 200%;
+  animation: animateglow 10s ease infinite;
+}
+.box:nth-child(2) ,
+.box:nth-child(2) {
+    background: linear-gradient(235deg,#ff005e,#010615,#fbff00);
+    background-size: 200% 200%;
+    animation: animateglow 10s ease infinite;
+}
+.box:nth-child(3) ,
+.box:nth-child(3) {
+    background: linear-gradient(235deg,#772aff,#010615,#2196F3);
+    background-size: 200% 200%;
+    animation: animateglow 10s ease infinite;
+}
+.box:nth-child(4) ,
+.box:nth-child(4) {
+    background: linear-gradient(235deg,#772aff,#010615,#2196F3);
+    background-size: 200% 200%;
+    animation: animateglow 10s ease infinite;
+}
+.box:nth-child(5) ,
+.box:nth-child(5) {
+    background: linear-gradient(235deg,#772aff,#010615,#2196F3);
+    background-size: 200% 200%;
+    animation: animateglow 10s ease infinite;
+}
+.box:nth-child(6) ,
+.box:nth-child(6) {
+    background: linear-gradient(235deg,#772aff,#010615,#2196F3);
+    background-size: 200% 200%;
+    animation: animateglow 10s ease infinite;
+}
+.box:nth-child(7) ,
+.box:nth-child(7) {
+    background: linear-gradient(235deg,#772aff,#010615,#2196F3);
+    background-size: 200% 200%;
+    animation: animateglow 10s ease infinite;
+}
+.box:nth-child(8) ,
+.box:nth-child(8) {
+    background: linear-gradient(235deg,#772aff,#010615,#2196F3);
+    background-size: 200% 200%;
+    animation: animateglow 10s ease infinite;
+}
+.box:nth-child(9) ,
+.box:nth-child(9) {
+    background: linear-gradient(235deg,#772aff,#010615,#2196F3);
+    background-size: 200% 200%;
+    animation: animateglow 10s ease infinite;
+}
+.more-info{
+  margin-bottom:10px;
+  padding: 10px;
+}
+.classprog{
+  width: 250px;
+  height: 12px;
+  background: #353b48;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px #2187e7b3;
+}
+progress[value]::-webkit-progress-value {
+  background-image:
+	   -webkit-linear-gradient(-45deg,
+	                           transparent 33%, rgba(0, 0, 0, .1) 33%,
+	                           rgba(0,0, 0, .1) 66%, transparent 66%),
+	   -webkit-linear-gradient(top,
+	                           rgba(255, 255, 255, .25),
+	                           rgba(0, 0, 0, .25)),
+	   -webkit-linear-gradient(left, #09c, #f44);
+
+    border-radius: 2px;
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+}
+
+@keyframes animateglow {
+  0%{
+    background-position: 0% 50%;
+  }
+  50%{
+    background-position: 100% 50%;
+  }
+  100%{
+    background-position: 0% 50%;
+  }
+}
+@keyframes html {
+  0%{
+    width: 0%;
+  }
+  100%{
+    width: 50%;
+  }
+}

@@ -1,0 +1,193 @@
+{% extends 'engineer/base.html' %}
+{% load static %}
+
+{% block title %} Levels {% endblock %}
+
+
+{% block style %}
+<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+<link rel="stylesheet" href="{% static 'css/engineer_levels.css' %}">
+
+<style media="screen">
+  .val{
+    color:white;
+    font-weight: bold;
+
+  }.more_info{
+    color:white;
+  }
+  .more_info:hover{
+    color:#ccc;
+  }
+  .add{
+    color:white;
+  }
+  .add:hover{
+    color:#ccc;
+  }
+  .remove{
+    color:black;
+  }
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form id='form' action="{% url 'tower:assign_foreman' %}" method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <input id="level_num" type="hidden" name="level_num">
+                  <div class="form-group">
+
+                    <label for="foreman" class="col-form-label">Choose Foreman</label>
+                    <select id='foreman' class="form-control" name="foreman">
+                      {% for foreman in foremen %}
+                        <option value="{{foreman.id}}">{{foreman.full_name}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+
+
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="main_cont">
+  {% for level in levels %}
+  <div class="box">
+      <div class="glass"></div>
+      <div class="content">
+          <h2>Floor Level : {{level.level__name}}</h2><br><br>
+          <div class="">
+            <strong>Foremen : </strong>
+            {% if level.foreman_name %}
+              <span class="val"> {{level.foreman_name}}</span>
+              <a title="remove" style="color:red;font-size:25px;" class="remove ml-2 fas fa-backspace" href="{% url 'tower:remove_foreman' level.level__name %}">
+
+              </a>
+            {% else %}
+              <span class="val">
+                <a style="width:90px; padding: 8px;" onclick="mod({{level.level__name}})" class="btn btn-primary" data-toggle="modal" data-target="#myModal">+ Add</a>
+              </span>
+            {% endif %}
+          </div>
+          <div class="">
+            <strong>num of painters : </strong><span class="val"> {{level.painters}}</span>
+          </div>
+          <div class="">
+            <strong>num of plumbers : </strong><span class="val"> {{level.plumbers}}</span>
+          </div>
+          <div class="">
+            <strong>num of clean-workers : </strong><span class="val"> {{level.cleaners}}</span>
+          </div>
+
+          <div class="skills">
+            <label for="file"><h3>PROGRESS</h3></label>
+            <progress id="file" value="{{level.prog}}" max="{{level.fin}}" class="classprog"></progress>
+          </div>
+          <a  href="{% url 'tower:engineer_level' level.level__name %}" class="btn btn-dark more-info">More Information</a>
+      </div>
+  </div>
+  {% endfor %}
+
+</div>
+{% endblock %}
+
+
+
+{% block script %}
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript">
+
+  function change_location(location){
+    window.location = location;
+  }
+  //
+  //
+  // for(let i=0;i<rem.length;i++){
+  //   rem[i].addEventListener('click',function(){
+  //     event.preventDefault();
+  //     swal({
+  //       text:"Are you sure you want to delete it ?",
+  //       buttons:true
+  //     }).then((value)=>
+  //         {
+  //           if(value)
+  //           {
+  //               window.location = this.href;
+  //           }
+  //         })
+  //   })
+  // }
+
+
+  function mod(num){
+    document.getElementById('level_num').value = num;
+  }
+
+  rem = document.querySelectorAll('.remove');
+  for(let i=0;i<rem.length;i++){
+    rem[i].addEventListener('click',function(){
+      event.preventDefault();
+      url = this.href
+      console.log(url);
+      swal.fire({
+        title: 'Are you sure?',
+        text: "you want to remove the foreman from this floor",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, remove him!'
+      }).then((result) => {
+        if (result.value) {
+          window.location = url;
+          Swal.fire(
+            'Removed!',
+            confirm,
+            'success'
+          )
+        }
+      })
+
+
+})
+}
+
+
+
+
+</script>
+
+{% endblock %}

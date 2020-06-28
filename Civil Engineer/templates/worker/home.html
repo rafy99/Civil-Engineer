@@ -1,0 +1,137 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'css/worker.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+
+      <!-- start navbar -->
+    <div class="cont">
+        <div class="navbar">
+            <div class="left_area">
+              <h3>Coding <span>Snow</span></h3>
+            </div>
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <div class="right_area">
+              <a href="{% url 'accounts:logout' %}" class="logout_btn">Logout</a>
+            </div>
+        </div>
+    </div>
+    <!-- End navbar -->
+    <!-- start main page -->
+    <div class="hold-all-content">
+        <!--start finished tasks-->
+        <div class="not-completed-tasks">
+
+          <!-- Button trigger modal -->
+
+
+
+          <div class="head head1">
+            <h3>Operations</h3>
+          </div>
+          <div class="body-div1">
+
+            {% for operation in operations %}
+
+              <div class="tasks-not-finished">
+                <h5>{{operation.type}} ({{operation.progress}}/{{operation.must_finish}}) {{operation.level}}</h5>
+
+                <button type="button" class="btn btn-primary btn-general progressBtn" id="progressBtn_{{operation.id}}">Add Progress</button>
+                <button type="button" class="btn btn-info btn-general1 infoBtn" id="infoBtn_{{operation.id}}">More Info</button>
+
+              </div>
+
+
+              <div id="infoModal_{{operation.id}}" class="My_modal modal">
+                 <div class="modal-content">
+                   <div class="modal-header">
+                     <h2>Modal Header</h2>
+                     <span class="close0">&times;</span>
+                   </div>
+                   <div class="modal-body">
+                     <p><strong>{{operation.type}}</strong></p>
+                       <strong>Description:</strong>
+                       <p>{{operation.get_description}}</p>
+                       <strong>Deadline:</strong>
+                       <p>{{operation.deadline}}</p>
+                   </div>
+                 </div>
+               </div>
+
+             <!--End model template for info-->
+             <!--start model for progress bar-->
+             <div id="progressModal_{{operation.id}}" class="My_modal modal1">
+                 <div class="modal-content1">
+                   <div class="modal-header1">
+                     <span class="close0">&times;</span>
+                     <h2>Modal Header</h2>
+                   </div>
+                   <div class="modal-body1">
+                     <div class="container">
+                       <form class="" action="{% url 'tower:operation_progress_worker' %}" method="POST">
+                         {% csrf_token %}
+                         <input oninput="display()" name="progress" type="range" value="{{operation.progress}}" min="{{operation.progress}}" max="{{operation.must_finish}}" >
+                         <span >{{operation.progress}}</span>
+                         <input name="operation_id" type="hidden" value="{{operation.id}}" >
+                         <br>
+                         <p class="text-center">
+                           <button class="btn btn-success " type="submit" name="button">Submit</button>
+                         </p>
+                       </form>
+
+                     </div>
+                   </div>
+                 </div>
+               </div>
+
+
+
+            {% endfor %}
+
+          </div>
+        </div>
+
+
+        <div class="completed-tasks">
+            <div class="head">
+                <h3>Completed Operations</h3>
+            </div>
+
+            {% for finished in finished_operations %}
+
+            <div class="body-div">
+                <div class="tasks-finished">
+                    <h5>{{finished.get_description}}</h5>
+                    <i class="fa fa-check"></i>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+        <!--end finished tasks-->
+        <!--start not finished tasks-->
+        <!--end not finished tasks-->
+    </div>
+    <!-- End main page -->
+         <!--start model trmplate for info-->
+
+        <!--End model for progress bar-->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'js/worker.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,253 @@
+/* start main rules */
+*{
+  margin: 0;
+  padding: 0;
+  --bg:#ecf0fe;
+  --sombra:#a0a2a5;
+}
+/* end main rules */
+/* start navbar */
+.navbar {
+  background: #22242A;
+}
+.navbar .left_area{
+    float: left;
+}
+.navbar .left_area h3{
+  color: #fff;
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 22px;
+  font-weight: 900;
+}
+.navbar .left_area span{
+  color: #19B3D3;
+}
+.logout_btn{
+  padding: 5px;
+  background: #19B3D3;
+  text-decoration: none;
+  float: right;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 40px;
+  border-radius: 2px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  transition: 0.5s;
+  transition-property: background;
+}
+.logout_btn:hover{
+  background: #0B87A6;
+}
+.navbar::placeholder{
+    color:black;
+    font-size:15px;
+}
+/* end navbar */
+/* start first card */
+.card{
+  top: 0px;
+  left: 0px;
+  margin:90px 200px ;
+  float: left;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+}
+/* end first card */
+/* start first model */
+:root {
+  --modal-duration: 1s;
+  --modal-color: #428bca;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-content {
+  margin: 10% auto;
+  width: 60%;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+}
+.modal-header h2,
+.modal-footer h3 {
+  margin: 0;
+}
+
+.modal-header {
+  background: var(--modal-color);
+  padding: 15px;
+  color: #fff;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.modal-body {
+  padding: 10px 20px;
+  background: #fff;
+}
+
+.close {
+  color: #ccc;
+  float: right;
+  font-size: 30px;
+  color: #fff;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.data{
+  background-color:#D3D3D3;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+}
+.data h2 ,
+.data strong ,
+.data p{
+  padding: 10px;
+}
+@keyframes modalopen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* end first model */
+/* start second modal */
+:root {
+  --modal-duration: 1s;
+  --modal-color: #428bca;
+}
+.modal1 {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-content1 {
+  margin: 10% auto;
+  width: 60%;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+}
+.modal-header1 h2,
+.modal-footer1 h3 {
+  margin: 0;
+}
+
+.modal-header1 {
+  background: var(--modal-color);
+  padding: 15px;
+  color: #fff;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.modal-body1 {
+  padding: 10px 20px;
+  background: #fff;
+}
+
+.close1 {
+  color: #ccc;
+  float: right;
+  font-size: 30px;
+  color: #fff;
+  margin-top: -39px;
+}
+
+.close1:hover,
+.close1:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.data1{
+  background-color:#D3D3D3;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+}
+.data1 h2 ,
+.data1 strong ,
+.data1 p{
+  padding: 10px;
+}
+@keyframes modalopen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* end second modal */
+/* start progress bar */
+.container{
+  width: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:20px ;
+  margin-bottom: 20px;
+}
+.forprog{
+  width: 100%;
+  -webkit-appearance: none;
+  height: 17px;
+  background: #dadada;
+  border-radius: 30px;
+  outline: 0;
+  overflow: hidden;
+}
+.forprog , .spanforprog{
+  box-shadow: 8px 8px 8px var(--sombra),
+  -2px -2px 2px white , 
+  inset -1px -1px 0px 1px white ,
+  inset 1px 1px 0px 1px var(--sombra);
+}
+.forprog::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: var(--bg);
+  box-shadow: 3px 3px 3px var(--sombra),
+  -2px -2px 2px white,
+  inset -3px -3px 3px white,
+  inset 3px 3px 3px var(--sombra),
+  -105px 0px 20px 100px rgba(0, 255, 234, .4),
+  -610px 0px 0px 600px rgba(73, 2, 187);
+  cursor: pointer;
+}
+.spanforprog{
+  width: 43px;
+    height: 40px;
+    margin-left: 20px;
+    padding: 7px;
+    border-radius: 10px;
+    font-weight: 100;
+    font-family: arial;
+}
+/* End progress bar */ 
+ 

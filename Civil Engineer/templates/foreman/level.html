@@ -1,0 +1,396 @@
+{% extends 'foreman/base.html' %}
+{% load static %}
+
+
+{% block title %}
+Level {{level_num}}
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/progress.css' %} ">
+<style media="screen">
+  .modal-dialog{
+      width:85%;
+  }.embed_par{
+    height:750px;
+  }
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+
+
+
+<div class="modal fade" id="view_pdf_modal" role="dialog">
+  <div class="modal-dialog">
+        <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h1 >Open in Browser <a  class="embed_link" target="_blank" href="#"> Click Here</a></h1>
+      </div>
+      <div class="modal-body">
+        <div class="embed_par">
+          <embed id='embed' src="#" frameborder="0" width="100%" height="100%">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="send_pdf" role="dialog">
+  <div class="modal-dialog">
+        <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <form action="{% url 'tower:create_pdf' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="modal-body">
+
+
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Title:</label>
+              <input required type="text" class="form-control" name="title" value="">
+            </div>
+
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">File:</label>
+              <input required type="file" class="form-control-file" name="file" value="">
+            </div>
+
+
+            <input type="hidden" name="level" value="{{ level_num }}">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Upload file</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{% url 'tower:create_operation' %}" method="POST" >
+        {% csrf_token %}
+
+        <div class="modal-body">
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">type:</label>
+              <select id="select_type" onchange="get_workers()" class="custom-select" name="type">
+                <option required disabled selected value="">Choose type</option>
+                {% for op_type in operation_types %}
+                  <option value="{{op_type.id}}">{{op_type.name}}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">description:</label>
+              <textarea name="description" class="form-control" id="message-text"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">DeadLine:</label>
+              <input required name="deadline" class="form-control" type="date" id="message-text">
+            </div>
+
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">amount to finish :</label>
+              <input required type="number" name="must_finish" class="form-control" id="message-text">
+            </div>
+
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Worker:</label>
+              <select required class="custom-select" id="select_worker" name="worker">
+
+              </select>
+            </div>
+
+            <input type="hidden" name="level" value="{{ level_num }}">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Send message</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="change_progress_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="change_progress_modal">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{% url 'tower:operation_progress' %}" method="POST" >
+        {% csrf_token %}
+
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">New Progress :</label>
+            <input required type="number" name="progress" class="form-control" id="message-text">
+          </div>
+
+            <input type="hidden" id="operation_id" name="operation_id" value="">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Send message</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<div>
+  <!-- start progress part  -->
+  <div class="progress_part">
+    <h1 class="align-left"> Level {{level_num}}</h1>
+    <button type="button" class="float-right mr-5 btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">+ Add Operation</button>
+    <br><br>
+    <div class="accordion" id="accordionExample">
+      {% for operation_type in operation_types %}
+      <div class="card">
+        <div class="card-header" id="head_{{operation_type.id}}">
+          <h2 class="mb-0">
+            <button class="button_style cblack btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#id_{{operation_type.id}}" aria-expanded="true" aria-controls="id_{{operation_type.id}}">
+            {{operation_type.name}}
+
+            </button>
+          </h2>
+        </div>
+        <!--begin of data-->
+        <div id="id_{{operation_type.id}}" class="collapse {% if forloop.counter == 1 %}show{% endif %}" aria-labelledby="head_{{operation_type.id}}" data-parent="#accordionExample">
+          <div class="card-body">
+            <!--begin of data-->
+            <ul class="list-group list-group-flush">
+              {% for operation in operation_type.operations %}
+                <li id='op_{{operation.id}}' class="list-group-item pb-4 pt-4">
+
+                  <p class="pb-3">
+                    <span class="float-left">{{operation.worker}}</span>
+                    <span class="float-right">
+                      <button onclick="change_progress({{operation.id}})" class='btn btn-primary'  data-toggle="modal" data-target="#change_progress_modal" data-whatever="@getbootstrap" type="button" name="button">Change Progress</button>
+                      <button onclick="delete_progress({{operation.id}})" class="btn btn-danger">Delete</button>
+                    </span>
+                  </p><br>
+                  <p>
+                    <span class="float-left">Task : {{operation.get_description}}</span>
+                    <span class="float-right">Deadline : {{operation.deadline}} </span>
+                  </p><br>
+
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style='width: {{operation.percent}}%;' aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">({{operation.percent}})% </div>
+                   </div>
+                </li>
+              {% endfor %}
+
+            </ul>
+              <!--end of part of data-->
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+        <!--card2-->
+
+    </div>
+  </div>
+
+  <!-- end progress part  -->
+  <!-- start report part  -->
+  <div class="reports">
+      <div class="content_side">
+        {% for file in current_level.files %}
+          <div class="pdf">
+            <div class="iconpdf">
+              <!-- <a onclick='open_pdf()' href="{{ file.get_path }}" target="_blank" data-toggle="modal" data-target="#view_pdf_modal">  <i class="far fa-file-pdf"> PDF1</i></a> -->
+              <a href="{{ file.get_path }}" target="_blank" >  <i class="far fa-file-pdf"> {{file.title}}</i></a>
+            </div>
+            <div class="my_close">
+              <a id="deleteId_{{file.id}}" href="{% url 'tower:delete_pdf' 123456 %}"  style="color:red" class="fas fa-window-close"></a>
+            </div>
+          </div>
+        {% endfor %}
+
+
+      </div>
+      <!-- part of (add button)  -->
+    <div class="button_side">
+     <button style="background-color: #252C48;" class="button_style" type="button" name="button" data-toggle="modal" data-target="#send_pdf"> Add reprot</button>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+
+{% block script %}
+
+<script src="http://kit.fontawesome.com/a076d05399.js"></script>
+
+<script>
+//
+// var close = document.querySelectorAll(".close");
+//
+// for(var i=0;i<close.length;i++){
+// close[i].addEventListener('click', function(){
+//   swal({
+//     text:"Are you sure you want to delete it ?",
+//     buttons:true
+//   }).then((value)=>
+//       {
+//         if(value)
+//         {
+//             this.parentNode.style.display = 'none';
+//         }
+//       })
+//
+// });
+// }
+
+
+close = document.querySelectorAll('.my_close');
+for(let i=0;i<close.length;i++){
+  close[i].addEventListener('click',function(){
+    event.preventDefault();
+    url = this.childNodes[1].href
+    cur_id = this.childNodes[1].id.split("_")[1]
+    url = url.replace('123456',cur_id)
+    console.log(url);
+    swal.fire({
+      title: 'Are you sure?',
+      text: "The File be Deleted permanently",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Delete it!'
+    }).then((result) => {
+      if (result.value) {
+
+        getData(url)
+        .then(data => {
+
+          Swal.fire(
+            'Deleted!',
+            data['messaage'],
+            'success'
+          )
+          this.parentNode.style.display = 'none';
+        }).catch(function(data) {
+          Swal.fire(
+            'Failed!',
+            data['messaage'],
+            'error'
+          )
+        });;
+      }
+    })
+
+
+})
+}
+// Example POST method implementation:
+
+
+async function get_workers(){
+  val = document.getElementById('select_type').value;
+  workers = document.getElementById('select_worker');
+  workers.innerHTML = ""
+  url = "{% url 'tower:foreman_workers' 123456 %}".replace("123456",val);
+  getData(url)
+  .then(data => {
+    for(let i =0;i<data.length;i++){
+
+      var opt = document.createElement('option');
+
+      // create text node to add to option element (opt)
+      opt.appendChild( document.createTextNode(data[i].first_name + " " + data[i].last_name) );
+
+      // set value property of opt
+      opt.value = data[i].id;
+
+      // add opt to end of select box (sel)
+      workers.appendChild(opt);
+    }
+  });
+
+}
+
+
+function change_progress(id){
+  document.getElementById('operation_id').value = id;
+  console.log(id);
+}
+
+function delete_progress(id){
+    url = "{% url 'tower:delete_operation' 123456 %}".replace("123456",id);
+    console.log(event.target);
+    swal.fire({
+      title: 'Are you sure',
+      text: "you want to delete this operation?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+
+        getData(url)
+        .then(data => {
+
+          Swal.fire(
+            'Deleted!',
+            data['messaage'],
+            'success'
+          )
+          document.getElementById('op_'+id).style.display = 'none'
+        });
+
+
+      }
+    })
+
+  }
+
+
+  function open_pdf(){
+    let e = event.target.parentNode.href;
+
+    console.log(event.target)
+    console.log(event.target.parentNode)
+    console.log(e);
+    document.getElementById('embed').src = e;
+    document.getElementById('embed_link').href = e;
+  }
+
+
+</script>
+
+{% endblock %}

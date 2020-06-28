@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mdb.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/engineer_dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <title>{% block title %}{% endblock %}</title>
+    {% block style %}
+
+    {% endblock %}
+</head>
+
+<body>
+    <div class="r_container">
+        <div class="r_navbar">
+            <header>
+              <div class="left_area">
+                <h3>Project <span>Name</span></h3>
+              </div>
+              <input type="search" placeholder="search..">
+              <div class="right_area">
+                <a href="{% url 'accounts:logout' %}" class="r_logout_btn">Logout</a>
+              </div>
+            </header>
+        </div>
+        <div class="r_sidebar">
+            <center>
+            <img src="{% static 'images/about.jpg' %}" alt="" class="profile_image">
+            <h4>Jessica</h4>
+            </center>
+            <a href="{% url 'tower:engineer_home' %}"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+            <a href="{% url 'tower:engineer_levels' %}" ><i class="fa fa-building"></i><span>Levels</span></a>
+            <a href="{% url 'tower:engineer_workers' %}"><i class="fas fa-table"></i><span>Workers</span></a>
+            <a href="{% url 'tower:engineer_foremen' %}"><i class="fas fa-table"></i><span>Foremen</span></a>
+        </div>
+        <div class="r_content">
+          <div style="height:1300px">
+            {% if messages %}
+
+                {% for message in messages %}
+                  <div class="alert alert-danger">
+                    {{ message }}
+                  </div>
+                {% endfor %}
+            {% endif %}
+            {% block content %}
+            {% endblock %}
+          </div>
+        </div>
+    </div>
+
+
+
+  <script>
+        var dropdown = document.getElementsByClassName("drop");
+        var i;
+
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+    });
+}
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script type="text/javascript">
+    function delete_swal(url,message,confirm){
+        swal.fire({
+          title: 'Are you sure?',
+          text: message,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.value) {
+            window.location = url;
+            Swal.fire(
+              'Deleted!',
+              confirm,
+              'success'
+            )
+          }
+        })
+
+      }
+    </script>
+    {% block script %}
+
+    {% endblock %}
+</body>
+</html>

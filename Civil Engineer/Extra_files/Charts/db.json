@@ -1,0 +1,69 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode",
+	  "fields" : {
+	  "level" : 2 ,
+	  "type" : 1,
+	  "deadline" : "2020-07-26" ,
+	  "finished" : "2020-06-28"
+	  }
+    },{
+      "id": 2,
+      "title": "json-server2",
+      "author": "typicode2",
+	  "fields" : {
+	  "level" : 4 ,
+	  "type" : 2,
+	  "deadline" : "2020-07-30" ,
+	  "finished" : null
+	  }
+	 },
+	 {
+      "id": 3,
+      "title": "json-server3",
+      "author": "typicode3",
+	  "fields" : {
+	  "level" : 2 ,
+	  "type" : 2,
+	  "deadline" : "2020-06-25" ,
+	  "finished" : "2020-06-27"
+	  }
+	 },
+	 {
+      "id": 4,
+      "title": "json-server4",
+      "author": "typicode4",
+	  "fields" : {
+	  "level" : 2,
+	  "type" : 1,
+	  "deadline" : "2020-03-27" ,
+	  "finished" : "2020-03-25"
+	  }
+	 },
+	 {
+      "id": 5,
+      "title": "json-server5",
+      "author": "typicode5",
+	  "fields" : {
+	  "level" : 2,
+	  "type" : 2,
+	  "deadline" : "2021-03-25" ,
+	  "finished" : "2020-07-25"
+	  }
+	 },
+	 {
+      "id": 6,
+      "title": "json-server5",
+      "author": "typicode5",
+	  "fields" : {
+	  "level" : 10,
+	  "type" : 1,
+	  "deadline" : "2021-10-25" ,
+	  "finished" : "2020-07-25"
+	  }
+	 }
+  ]
+}

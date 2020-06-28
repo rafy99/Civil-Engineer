@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/stylesheet.css' %}" />
+    <title>Engineer charts </title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <title>Charts</title>
+  </head>
+  <body>
+    <div class="page">
+    <div class="nav_side">
+      <ul>
+        <h2>Side Menu</h2><br><br><br>
+        <li><a href="home.html"><i class="fas fa-home"></i>Dashboard</a></li>
+        <li><a href="#">Empty</a></li>
+        <li><a href="#">Empty</a></li>
+        <li><a href="#">Empty</a></li>
+      </ul>
+    </div>
+    <div class="main_content">
+      <div class="nav_horz">
+        <ul>
+          <li><a href="profile.html"><i class="fas fa-user-circle"></i>.</a></li>
+            <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
+          <li><a href="About.html"><i class="fas fa-address-card"></i> About</a></li>
+          <li><a href="Contact.html"><i class="fas fa-address-book"></i> Contact us</a></li>
+          <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+        </ul>
+        <div class="search_box">
+          <div class="search">
+            <input type="text" name="search" value="" placeholder="What are you looking for ?...">
+          </div>
+          <div class="search_btn">
+            <i class="fas fa-search"></i>
+          </div>
+        </div>
+      </div>
+      <div class="info">
+        <section>
+          <div class="chart">
+            <button  type="button" onclick="setValues()"class="btn btn-warning">Zoom In</button>
+
+            <canvas id="myChart" width="320" height="100"></canvas>
+            <h3></h3>
+            <h4></h4>
+          </div>
+          <div class="chart">
+            <canvas id="myBarChart" width="350" height="100"></canvas>
+            <h3></h3>
+            <h4></h4>
+          </div>
+          <div class="chart">
+            <canvas id="myChart2" width="320" height="100"></canvas>
+            <h3></h3>
+            <h4></h4>
+          </div>
+        </section>
+      </div>
+      </div>
+      <footer>
+        <p>Copyright © 2020 The Builders in Alexandria : By Web_team</p>
+      </footer>
+    </div>
+  </body>
+</html>

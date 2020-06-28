@@ -1,0 +1,85 @@
+body{
+  /* background-color: #ccc; */
+  background-color:  #1D1E38;
+}
+.cblack{
+    color:white;
+}
+h1{
+  color:white;
+}
+.card-header{
+  background-color: #252C48;
+}
+.card-body,.list-group-item{
+background-color: #1c2235;
+  color:white;
+}
+.progress_part
+{
+
+  width: 68%;
+  display: inline-block;
+  margin: 5px;
+  color:green;
+}
+.progress_part h1
+{
+  text-align: center;
+}
+.accordion
+{
+  margin: 10px;
+}
+.my_close
+{
+  float: right;
+  display: inline-block;
+}
+.reports
+{
+
+  width: 30%;
+  height:700px;
+  float:right;
+  border-radius: 5px;
+}
+.content_side
+{
+  border: 2px solid #cccccc;
+  border-radius: 10px;
+  height: 600px;
+  margin: 10px;
+  box-shadow: -3px -3px 5px #bfbfbf;
+  background-color: #252C48;
+}
+a{
+  color:white;
+}
+.pdf
+{
+  border-bottom: 1px solid #666666;
+  margin: 20px;
+}
+
+.iconpdf
+{
+  font-size: 40px;
+    display: inline-block;
+}
+
+.button_side
+{
+  margin: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 2px solid #cccccc;
+  border-radius: 10px;
+  box-shadow: -3px -3px 5px #bfbfbf;
+}
+.button_style
+{
+  width: 100%;
+  font-size: 30px;
+  color:white;
+}

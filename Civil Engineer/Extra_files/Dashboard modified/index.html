@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <title>Dashboard Modified </title>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <header>
+              <div class="left_area">
+                <h3>Coding <span>Snow</span></h3>
+              </div>
+              <input type="search" placeholder="search..">
+              <div class="right_area">
+                <a href="#" class="logout_btn">Logout</a>
+              </div>
+            </header>
+        </div>
+        <div class="sidebar">
+            <center>
+            <img src="images/about.jpg" alt="" class="profile_image">
+            <h4>Jessica</h4>
+            </center>
+            <a href="#"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+            <a href="#"><i class="fas fa-cogs"></i><span>Components</span></a>
+            <a href="#"><i class="fas fa-table"></i><span>Tables</span></a>
+            <a href="#" class="drop"><i class="fa fa-building"></i>
+            <span>Levels</span>  
+               <i class="fa fa-caret-down"></i> 
+                <div class="dropdown-container">
+                    <a href="#">
+                    <i class="fa fa-info"></i>
+                    Level 1</a>
+                    <a href="#">
+                    <i class="fa fa-info"></i>
+                    Level 2</a>
+                    <a href="#">
+                    <i class="fa fa-info"></i>
+                    Level 3</a>
+                </div>
+            </a>
+            <a href="#"><i class="fas fa-th"></i><span>Forms</span></a>
+            <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
+            <a href="#"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
+        </div>
+        <div class="chart">
+            <h3 style="text-align: center;">Mohab chart</h3>
+        </div>
+        <div class="piechart">
+            <h3 style="text-align: center;">Mohab pie chart</h3>
+        </div>
+        <div class="table1">
+            <h3 style="text-align: center;">Mina table</h3>
+        </div>
+    </div>
+    
+    <script>
+        var dropdown = document.getElementsByClassName("drop");
+        var i;
+
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }       
+    });
+}
+    </script>
+</body>
+</html>
